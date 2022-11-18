@@ -2,9 +2,11 @@ FROM public.ecr.aws/lambda/python:3.8
   
 # Copy function code
 COPY api.py ${LAMBDA_TASK_ROOT}
+COPY tgtg-tokens.json ${LAMBDA_TASK_ROOT}
 
 # Run pip install
 RUN pip install tgtg
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
-CMD [ "api.tgtg_hander" ]
+# CMD [ "python", "./api.py" ]
+CMD [ "api.tgtg_handler" ]
